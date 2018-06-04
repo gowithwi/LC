@@ -48,6 +48,7 @@ void ParticleFilter::init(double gps_x, double gps_y, double gps_theta, double s
         particles[i].theta=sample_theta;
         particles[i].weight=1.0;
         weights[i] = particles[i].weight;
+        cout<<i<<"'s particle's x is "<<particles[i].x<<"./n";
     }
     is_initialized = true;
     
@@ -115,7 +116,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
     }
     
     // 2. Now I need to play with each particle,
-    for(unsigned int i = 0; i < num_particles; i++){ // for each particle, run all observations
+    for( int i = 0; i < num_particles; i++){ // for each particle, run all observations
         
         std::vector<LandmarkObs> XY_O;
         
@@ -155,7 +156,7 @@ void ParticleFilter::resample() {
     discrete_distribution<double> distribution (weights.begin(),weights.end());
     
     vector<int> numnum;
-    for (unsigned int i=0; i<num_particles; ++i) {
+    for ( int i=0; i<num_particles; ++i) {
         numnum[i] = distribution(generator);
     }
 
@@ -164,7 +165,7 @@ void ParticleFilter::resample() {
     particles_mirror = particles;
     
     // 3. Now I write in the resampled particles.
-    for (unsigned int i=0; i<num_particles; ++i) {
+    for ( int i=0; i<num_particles; ++i) {
         int index = numnum[i];
         particles[i] = particles_mirror[index];
         particles[i].weight = 1.0;
