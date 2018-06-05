@@ -10,6 +10,8 @@
 #define PARTICLE_FILTER_H_
 
 #include "helper_functions.h"
+#include <random>
+
 
 struct Particle {
 
@@ -26,7 +28,8 @@ struct Particle {
 
 
 class ParticleFilter {
-	
+    std::default_random_engine gen;
+
 	// Number of particles to draw
 	int num_particles;
 	

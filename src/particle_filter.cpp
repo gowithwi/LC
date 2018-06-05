@@ -22,8 +22,8 @@ void ParticleFilter::init(double gps_x, double gps_y, double gps_theta, double s
 	// Add random Gaussian noise to each particle.
 	// NOTE: Consult particle_filter.h for more information about this method (and others in this file).
 
-    num_particles = 1000;
-    default_random_engine gen;
+    num_particles = 100;
+//    default_random_engine gen;
     
     normal_distribution<double> dist_x(gps_x, std[0]);
     normal_distribution<double> dist_y(gps_y, std[1]);
@@ -52,7 +52,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 	//  http://en.cppreference.com/w/cpp/numeric/random/normal_distribution
 	//  http://www.cplusplus.com/reference/random/default_random_engine/
     
-    default_random_engine gen;
+//    default_random_engine gen;
     double new_x;
     double new_y;
     double new_theta;
@@ -165,7 +165,7 @@ void ParticleFilter::resample() {
 	// NOTE: You may find std::discrete_distribution helpful here.
 	//   http://en.cppreference.com/w/cpp/numeric/random/discrete_distribution
     
-    default_random_engine gen;
+//    default_random_engine gen;
     discrete_distribution<int> distribution(weights.begin(),weights.end());
     
     vector<Particle> resample_particles;
