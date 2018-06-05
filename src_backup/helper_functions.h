@@ -58,6 +58,17 @@ inline double dist(double x1, double y1, double x2, double y2) {
 	return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
 
+//std::vector<double> Convert_Car2Map(double xc, double yc, double xp, double yp, double yaw){
+//    double xm;
+//    double ym;
+//    xm = cos(yaw)*xc - sin(yaw)*yc + xp;
+//    ym = sin(yaw)*xc + cos(yaw)*yc + yp;
+//    std::vector<double> pos;
+//    pos[0] = xm;
+//    pos[1] = ym;
+//    return pos;
+//}
+
 inline double * getError(double gt_x, double gt_y, double gt_theta, double pf_x, double pf_y, double pf_theta) {
 	static double error[3];
 	error[0] = fabs(pf_x - gt_x);
