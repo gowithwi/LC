@@ -146,7 +146,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
                 particles[p].weight *= penalty;
             }
             
-            associations.push_back(association); // push in each observations
+            associations.push_back(association + 1); // push in each observations
             sense_x.push_back(trans_observations[i].x);
             sense_y.push_back(trans_observations[i].y);
         }
