@@ -1,5 +1,5 @@
 /*
- * 0605-3
+ * 0605-4
  */
 
 #include <random>
@@ -59,14 +59,15 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
     
     for (int i = 0; i < num_particles; ++i) {
 
-        if (yaw_rate == 0){
-            new_x = particles[i].x + velocity*delta_t*cos(particles[i].theta);
-            new_y = particles[i].y + velocity*delta_t*sin(particles[i].theta);
-            new_theta = particles[i].theta;
-        }else{
+        if ( abs(yaw_rate) > 0.0){
             new_x = particles[i].x + velocity/yaw_rate*(sin(particles[i].theta+yaw_rate*delta_t)-sin(particles[i].theta));
             new_y = particles[i].y + velocity/yaw_rate*(cos(particles[i].theta)-cos(particles[i].theta+yaw_rate*delta_t));
             new_theta = particles[i].theta + yaw_rate*delta_t;
+
+        }else{
+            new_x = particles[i].x + velocity*delta_t*cos(particles[i].theta);
+            new_y = particles[i].y + velocity*delta_t*sin(particles[i].theta);
+            new_theta = particles[i].theta;
         }
         normal_distribution<double> dist_x(new_x, std_pos[0]);
         normal_distribution<double> dist_y(new_y, std_pos[1]);
